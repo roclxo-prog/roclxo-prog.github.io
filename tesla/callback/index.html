@@ -1,0 +1,11 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Tesla 인증 코드</title>
+<style>body{font-family:sans-serif;max-width:640px;margin:40px auto;padding:0 16px;text-align:center}#code{font-family:monospace;font-size:1.6em;word-break:break-all;background:#f2f2f2;padding:16px;border-radius:8px}button{font-size:1.2em;padding:10px 24px;margin:16px}.err{color:#c00}</style></head>
+<body><h2>Tesla 인증 코드</h2><div id="out"></div>
+<script>
+var p=new URLSearchParams(location.search),o=document.getElementById('out'),c=p.get('code'),e=p.get('error'),s=p.get('state');
+function t(x){var d=document.createElement('div');d.textContent=x;return d.innerHTML}
+var h='';if(e)h+='<p class="err">오류: '+t(e)+(p.get('error_description')?' — '+t(p.get('error_description')):'')+'</p>';
+if(c){h+='<div id="code">'+t(c)+'</div><button id="b">복사</button><p>이 코드를 마루에게 전달하세요 (몇 분 안에 만료돼요)</p>';if(s)h+='<p style="color:#888">state: '+t(s)+'</p>'}
+if(!c&&!e)h='<p>코드가 없어요.</p>';o.innerHTML=h;
+var b=document.getElementById('b');if(b)b.onclick=function(){navigator.clipboard.writeText(c).then(function(){b.textContent='복사됨!'})};
+</script></body></html>
